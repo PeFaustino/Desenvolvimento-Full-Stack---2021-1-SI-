@@ -28,9 +28,9 @@ public class App {
 		try{
 			Connection con = (Connection) DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/db_hotel", "developer","1234");
-			System.out.println("Conexão funcionou");
+			System.out.println("Conexï¿½o funcionou");
 			}catch(SQLException e){
-				System.err.println("Conexão não funcionou");
+				System.err.println("Conexï¿½o nï¿½o funcionou");
 				System.out.println(e.getMessage());
 			}	
 	}
@@ -51,7 +51,7 @@ public class App {
 		
 		System.out.println("Cadastrar novo Hotel");
 		
-		Hotel h1 = new Hotel(null, "Hotel Goiânia", "Goiânia", 3);
+		Hotel h1 = new Hotel(null, "Hotel Goiï¿½nia", "Goiï¿½nia", 3);
 		//h1 = ctrl.insert(h1);
 		System.out.println(h1);
 		
