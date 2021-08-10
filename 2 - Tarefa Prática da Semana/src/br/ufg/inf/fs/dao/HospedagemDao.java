@@ -1,9 +1,9 @@
 package br.ufg.inf.fs.dao;
 
+import br.ufg.inf.fs.ctrl.HospedeCtrl;
+import br.ufg.inf.fs.ctrl.QuartoCtrl;
 import br.ufg.inf.fs.entities.Hospedagem;
 import br.ufg.inf.fs.exceptions.HospedagemException;
-import br.ufg.inf.fs.exceptions.HospedeException;
-import br.ufg.inf.fs.exceptions.QuartoException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import java.util.List;
 public class HospedagemDao {
     Connection conn;
 
-    private QuartoDao quartoDao = new QuartoDao(conn);
+    private final QuartoCtrl quartoCtrl = new QuartoCtrl();
 
-    private HospedeDao hospedeDao = new HospedeDao(conn);
+    private final HospedeCtrl hospedeCtrl = new HospedeCtrl();
 
     public HospedagemDao(Connection conn) {
         this.conn = conn;
@@ -32,14 +32,14 @@ public class HospedagemDao {
             while (rs.next()) {
                 Hospedagem hospedagem = new Hospedagem(
                         rs.getInt("id_hospedagem"),
-                        quartoDao.findById(rs.getInt("id_quarto")),
-                        hospedeDao.findById(rs.getInt("id_hospede")),
+                        quartoCtrl.findById(rs.getInt("id_quarto")),
+                        hospedeCtrl.findById(rs.getInt("id_hospede")),
                         rs.getDate("dt_checkin"),
                         rs.getDate("dt_checkout"));
 
                 retorno.add(hospedagem);
             }
-        } catch (SQLException | QuartoException | HospedeException e) {
+        } catch (SQLException e) {
             throw new HospedagemException("Erro no banco de dados: " + e.getMessage());
         } finally {
             DB.closeStatment(st);
@@ -61,12 +61,12 @@ public class HospedagemDao {
             if (rs.next()) {
                 retorno = new Hospedagem(
                         rs.getInt("id_hospedagem"),
-                        quartoDao.findById(rs.getInt("id_quarto")),
-                        hospedeDao.findById(rs.getInt("id_hospede")),
+                        quartoCtrl.findById(rs.getInt("id_quarto")),
+                        hospedeCtrl.findById(rs.getInt("id_hospede")),
                         rs.getDate("dt_checkin"),
                         rs.getDate("dt_checkout"));
             }
-        } catch (SQLException | QuartoException | HospedeException e) {
+        } catch (SQLException e) {
             throw new HospedagemException("Erro no banco de dados: " + e.getMessage());
         } finally {
             DB.closeStatment(st);
