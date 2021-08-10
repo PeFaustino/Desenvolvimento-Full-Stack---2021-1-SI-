@@ -199,7 +199,7 @@ public class App {
         hospedagem = ctrl.insert(hospedagem);
         System.out.println(hospedagem);
 
-        System.out.println("Lista de Hospedagens Cadastradas");
+        System.out.println("\nLista de Hospedagens Cadastradas");
         for (Hospedagem q : ctrl.findAll()) {
             System.out.println(q);
         }
