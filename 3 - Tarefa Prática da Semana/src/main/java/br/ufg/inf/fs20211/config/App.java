@@ -207,5 +207,31 @@ public class App {
         System.out.println("\nTerminou");
     }
 
+    public static void testeJpaHospede() {
+        HospedeCtrl hospedeCtrl = new HospedeCtrl();
+
+        System.out.println("Busca Todos");
+        for (Hospede h : hospedeCtrl.findAll()) {
+            System.out.println(h);
+        }
+
+        System.out.println("\nBuscar por ID");
+        System.out.println(hospedeCtrl.findById(1));
+
+        System.out.println("\nInserir no banco");
+
+        Hospede hospede = new Hospede(null, "hospede", new Date(1990, 1, 8), 123456);
+        hospede = hospedeCtrl.insert(hospede);
+
+
+        for (Hospede h : hospedeCtrl.findAll()) {
+            System.out.println(h);
+        }
+
+
+        System.out.println("\nExcluir");
+        hospedeCtrl.delete(hospede.getIdHospede());
+        System.out.println("\nTerminou");
+    }
 
 }
