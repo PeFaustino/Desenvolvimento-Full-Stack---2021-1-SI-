@@ -1,8 +1,12 @@
 package br.ufg.inf.fs;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import br.ufg.inf.fs.entities.*;
+import br.ufg.inf.fs.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -10,15 +14,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import br.ufg.inf.fs.entities.Hotel;
-import br.ufg.inf.fs.entities.Quarto;
-import br.ufg.inf.fs.entities.Regra;
-import br.ufg.inf.fs.entities.Usuario;
 import br.ufg.inf.fs.enums.CategoriaQuarto;
-import br.ufg.inf.fs.repositories.HotelRepository;
-import br.ufg.inf.fs.repositories.QuartoRepository;
-import br.ufg.inf.fs.repositories.RegraRepository;
-import br.ufg.inf.fs.repositories.UsuarioRepository;
 
 @Configuration
 @Profile("dev")
@@ -35,6 +31,12 @@ public class Config  implements CommandLineRunner{
 	
 	@Autowired
 	private RegraRepository regraRepository;
+
+	@Autowired
+	private HospedeRepository hospedeRepository;
+
+	@Autowired
+	private HospedagemRepository hospedagemRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -79,6 +81,11 @@ public class Config  implements CommandLineRunner{
 		regras.add(r3);
 		
 		Usuario usu2 = usuarioRepository.save(new Usuario("jose", "Jose Silva", encoder.encode("asdf"), regras));
+
+		for (int i = 0; i < 50; i++){
+			Hospede hospede = hospedeRepository.save(new Hospede(null, "Teste " + (i+1), new Date(1990, 1, 8), i+1));
+			hospedagemRepository.save(new Hospedagem(null, hospede, q1, new Date(1990, 1, 8), new Date(1990, 1, 8)));
+		}
 	
 	}
 
