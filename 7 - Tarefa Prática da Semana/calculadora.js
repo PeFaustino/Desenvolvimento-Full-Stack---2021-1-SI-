@@ -18,8 +18,8 @@ var btReset = document.querySelector('.btReset');
 var btPonto = document.querySelector('.btPonto');
 var btResut = document.querySelector('.btResut');
 
-var num1 = 0;
-var num2 = 0;
+var num1 = null;
+var num2 = null;
 var op = null;
 var resultado = null;
 var concluido = false;
@@ -91,6 +91,10 @@ bt9.addEventListener('click', function(){
     addCalc(9);
     addDisplay(9);
 });
+bt0.addEventListener('click', function(){
+    addCalc(0);
+    addDisplay(0);
+});
 
 
 
@@ -109,7 +113,7 @@ function addCalc(n){
         }
     }
 
-    if(num1 == 0 || op == null || num2 == 0){
+    if(num1 == null || op == null || num2 == null){
         btResut.disabled = true;
     }else{
         btResut.disabled = false;
@@ -141,19 +145,19 @@ btResut.addEventListener('click', function(){
 
 function soma(){
     num1 = num1 + num2;
-    num2 = 0;
+    num2 = null;
     resultado = null;
     setDisplay(num1);
 }
 function sub(){
     num1 = num1 - num2;
-    num2 = 0;
+    num2 = null;
     resultado = null;
     setDisplay(num1);
 }
 function mul(){
     num1 = num1 * num2;
-    num2 = 0;
+    num2 = null;
     resultado = null;
     setDisplay(num1);
 }
@@ -165,7 +169,7 @@ function div(){
 }
 function res(){
     num1 = num1 % num2;
-    num2 = 0;
+    num2 = null;
     resultado = null;
     setDisplay(num1);
 }
