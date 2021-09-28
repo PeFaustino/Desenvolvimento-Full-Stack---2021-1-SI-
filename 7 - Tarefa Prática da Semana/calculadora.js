@@ -31,6 +31,26 @@ btAdd.addEventListener('click', function(){
     op = "+";
     addDisplay("+");
 });
+btSub.addEventListener('click', function(){
+    decimal = false;
+    op = "-";
+    addDisplay("-");
+});
+btMul.addEventListener('click', function(){
+    decimal = false;
+    op = "*";
+    addDisplay("*");
+});
+btDiv.addEventListener('click', function(){
+    decimal = false;
+    op = "/";
+    addDisplay("/");
+});
+btPonto.addEventListener('click', function(){
+    decimal = false;
+    op = "%";
+    addDisplay("%");
+});
 
 
 
@@ -43,15 +63,38 @@ bt2.addEventListener('click', function(){
     addCalc(2);
     addDisplay(2);
 });
+bt3.addEventListener('click', function(){
+    addCalc(3);
+    addDisplay(3);
+});
+bt4.addEventListener('click', function(){
+    addCalc(4);
+    addDisplay(4);
+});
+bt5.addEventListener('click', function(){
+    addCalc(5);
+    addDisplay(5);
+});
+bt6.addEventListener('click', function(){
+    addCalc(6);
+    addDisplay(6);
+});
+bt7.addEventListener('click', function(){
+    addCalc(7);
+    addDisplay(7);
+});
+bt8.addEventListener('click', function(){
+    addCalc(8);
+    addDisplay(8);
+});
+bt9.addEventListener('click', function(){
+    addCalc(9);
+    addDisplay(9);
+});
 
 
 
 function addCalc(n){
-    if(concluido){
-        reset();
-        concluido = false;
-    }
-
     if(op == null){
         if(decimal){
             num1 += + n/10;
@@ -80,12 +123,51 @@ btResut.addEventListener('click', function(){
         case "+" :
             soma();
             break;
+        case "-" :
+            sub();
+            break;
+        case "*" :
+            mul();
+            break;
+        case "/" :
+            div();
+            break;
+        case "%" :
+            res();
+            break;
     }
 })
 
 
 function soma(){
-    setDisplay(num1 + num2);
+    num1 = num1 + num2;
+    num2 = 0;
+    resultado = null;
+    setDisplay(num1);
+}
+function sub(){
+    num1 = num1 - num2;
+    num2 = 0;
+    resultado = null;
+    setDisplay(num1);
+}
+function mul(){
+    num1 = num1 * num2;
+    num2 = 0;
+    resultado = null;
+    setDisplay(num1);
+}
+function div(){
+    num1 = num1 / num2;
+    num2 = 0;
+    resultado = null;
+    setDisplay(num1);
+}
+function res(){
+    num1 = num1 % num2;
+    num2 = 0;
+    resultado = null;
+    setDisplay(num1);
 }
 
 
