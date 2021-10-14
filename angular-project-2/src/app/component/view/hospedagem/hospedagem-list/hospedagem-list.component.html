@@ -1,0 +1,57 @@
+<mat-card class="example-card mat-elevation-z3" >
+    <button mat-button color="primary" class="botton_new" routerLink="/hospedagem/form">Nova Hospedagem</button>
+    <mat-card-header>
+        <mat-card-title>Hospedagens</mat-card-title>
+        <mat-card-subtitle>Lista de Hospedagens Cadastradas</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+        <table mat-table [dataSource]="hospedagem" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> #ID </th>
+              <td mat-cell *matCellDef="let hospedagem"> {{hospedagem.idHospedagem}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef> Nome do Hospede </th>
+              <td mat-cell *matCellDef="let hospedagem"> {{hospedagem.hospede.nmHospede}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quarto">
+              <th mat-header-cell *matHeaderCellDef> Quarto </th>
+              <td mat-cell *matCellDef="let hospedagem"> {{hospedagem.quarto.nrQuarto}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="checkin">
+              <th mat-header-cell *matHeaderCellDef> Data Checkin </th>
+              <td mat-cell *matCellDef="let hospedagem"> {{hospedagem.dtCheckin}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="checkout">
+              <th mat-header-cell *matHeaderCellDef> Data Checkout </th>
+              <td mat-cell *matCellDef="let hospedagem"> {{hospedagem.dtCheckout}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acao">
+                <th mat-header-cell *matHeaderCellDef>Acões </th>
+                <td mat-cell *matCellDef="let hospedagem">
+                    <a routerLink="/hospedagem/{{hospedagem.idHospedagem}}" class="edit">
+                        <button mat-raised-button color="primary"><i class="material-icons">edit</i></button>
+                    </a>
+                    <a>
+                        <button mat-raised-button color="warn" (click)="excluir(hospedagem)"><i class="material-icons">delete</i></button>
+                    </a>
+                </td>
+              </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+
+    </mat-card-content>
+</mat-card>
+
+
+

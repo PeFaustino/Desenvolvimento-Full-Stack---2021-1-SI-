@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title>{{titulo}}</mat-card-title>
+  <form>
+    <mat-form-field appearance="fill">
+      <mat-label>Hospede</mat-label>
+      <mat-select [(ngModel)]="hospedagem.hospede" required >
+                  <mat-option *ngFor="let item of hospedes" [value]="item" (onSelectionChange)="setHospede(item)">
+          {{item.nmHospede}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Quarto</mat-label>
+      <mat-select [(ngModel)]="hospedagem.quarto" required>
+                  <mat-option *ngFor="let item of quartos" [value]="item" (onSelectionChange)="setQuarto(item)">
+          {{item.nrQuarto}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="date" placeholder="Data Checkin" name="dtCheckin"
+             [(ngModel)]="hospedagem.dtCheckin">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="date" placeholder="Data Checkout" name="dtCheckout"
+             [(ngModel)]="hospedagem.dtCheckout">
+    </mat-form-field>
+
+  </form>
+
+  <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+  <button mat-raised-button color="warn" routerLink="/hospedes/">Cancelar</button>
+</mat-card>
